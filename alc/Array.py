@@ -89,7 +89,7 @@ class Array (object):
 
   # Matrix comparison
   def __eq__ (self, other):
-    if issubclass(self.__class__, key.__class__):
+    if issubclass(self.__class__, other.__class__):
       return self.__iterable == other.iterable
     else:
       raise TypeError("Always compare alc.Array objects instead of anything else")
@@ -162,4 +162,3 @@ class Array (object):
   def __invert__ (self):
     raise NotImplementedError("Hey! This is not implemented yet!")
 
-  

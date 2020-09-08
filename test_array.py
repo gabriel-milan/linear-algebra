@@ -1,4 +1,4 @@
-from alc import Array
+from alc import Array, ones, zeros, eye
 
 print ("==> Column vector test")
 arr = Array([
@@ -127,10 +127,19 @@ arr1 = Array([
 ])
 print ("-A: {}".format(-arr1))
 
-print ("==> Getting negative matrix")
+print ("==> Getting absolute values of matrix")
 arr1 = Array([
   [-1, 2, -3],
   [4, -5, -6],
   [-7, 8, -9]
 ])
 print ("abs(A): {}".format(abs(arr1)))
+
+print ("==> Identity test (3x3)")
+print (eye(3))
+
+print ("==> Zeros test (3x4)")
+print (zeros((3, 4)))
+
+print ("==> Ones test (4x3)")
+print (ones((4, 3)))
