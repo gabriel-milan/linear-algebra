@@ -1,4 +1,4 @@
-from alc import Array, ones, zeros, eye
+from alc import Array, ones, zeros, eye, gauss_elimination, lu_decomposition, solve, det, vector_norm, gauss_jordan_elimination
 
 print ("==> Column vector test")
 arr = Array([
@@ -143,3 +143,198 @@ print (zeros((3, 4)))
 
 print ("==> Ones test (4x3)")
 print (ones((4, 3)))
+
+print ("==> Transpose test")
+arr1 = Array([
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+])
+print (arr1.t)
+
+print ("==> Trace test")
+print (arr1.trace())
+
+print ("==> Gauss elimination")
+arr = Array([
+  [1, 2, 2],
+  [4, 4, 2],
+  [4, 6, 4]
+])
+gauss_elimination(arr)
+
+print ("==> Gauss elimination w/ pivot")
+arr = Array([
+  [0, 1, 1],
+  [1, 2, 1],
+  [1, 1, -1]
+])
+arr, intermediates = gauss_elimination(arr, show_steps=False, return_intermediates=True)
+print ("Intermediates: {}".format(intermediates))
+print ("Final result: {}".format(arr))
+
+print ("==> LU decomposition")
+arr = Array([
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9]
+])
+print ("Original: {}".format(arr))
+l, u = lu_decomposition(arr)
+print ("L: {}".format(l))
+print ("U: {}".format(u))
+print ("L * U : {}".format(l*u))
+
+print ("==> Solve Ax=B system")
+A = Array([
+  [1, 2, 2],
+  [4, 4, 2],
+  [4, 6, 4],
+])
+B = Array([
+  [3],
+  [6],
+  [10],
+])
+print ("A = {}".format(A))
+print ("B = {}".format(B))
+x = solve(A, B)
+print ("x = {}".format(x))
+
+print ("==> Solve Ax=B system (exercise 4)")
+A = Array([
+  [5, -4, 1, 0],
+  [-4, 6, -4, 1],
+  [1, -4, 6, -4],
+  [0, 1, -4, 5],
+])
+B = Array([
+  [-1],
+  [2],
+  [1],
+  [3]
+])
+print ("A = {}".format(A))
+print ("B = {}".format(B))
+x = solve(A, B)
+print ("x = {}".format(x))
+
+print ("==> Determinant test")
+arr = Array([
+  [5, -4, 1, 0],
+  [-4, 6, -4, 1],
+  [1, -4, 6, -4],
+  [0, 1, -4, 5],
+])
+print ("A={}".format(arr))
+print ("det(A)={}".format(det(arr)))
+
+print ("==> Solve Ax=B system (exercise 5)")
+A = Array([
+  [16,  9,  8,  7,  6,  5,  4,  3,  2,  1],
+  [ 9, 17,  9,  8,  7,  6,  5,  4,  3,  2],
+  [ 8,  9, 18,  9,  8,  7,  6,  5,  4,  3],
+  [ 7,  8,  9, 19,  9,  8,  7,  6,  5,  4],
+  [ 6,  7,  8,  9, 18,  9,  8,  7,  6,  5],
+  [ 5,  6,  7,  8,  9, 17,  9,  8,  7,  6],
+  [ 4,  5,  6,  7,  8,  9, 16,  9,  8,  7],
+  [ 3,  4,  5,  6,  7,  8,  9, 15,  9,  8],
+  [ 2,  3,  4,  5,  6,  7,  8,  9, 14,  9],
+  [ 1,  2,  3,  4,  5,  6,  7,  8,  9, 13],
+])
+B = Array([
+  [4],
+  [0],
+  [8],
+  [0],
+  [12],
+  [0],
+  [8],
+  [0],
+  [4],
+  [0],
+])
+print ("A = {}".format(A))
+print ("B = {}".format(B))
+x = solve(A, B)
+print ("x = {}".format(x))
+
+print ("==> Determinant (exercise 6)")
+A = Array([
+  [16,  9,  8,  7,  6,  5,  4,  3,  2,  1],
+  [ 9, 17,  9,  8,  7,  6,  5,  4,  3,  2],
+  [ 8,  9, 18,  9,  8,  7,  6,  5,  4,  3],
+  [ 7,  8,  9, 19,  9,  8,  7,  6,  5,  4],
+  [ 6,  7,  8,  9, 18,  9,  8,  7,  6,  5],
+  [ 5,  6,  7,  8,  9, 17,  9,  8,  7,  6],
+  [ 4,  5,  6,  7,  8,  9, 16,  9,  8,  7],
+  [ 3,  4,  5,  6,  7,  8,  9, 15,  9,  8],
+  [ 2,  3,  4,  5,  6,  7,  8,  9, 14,  9],
+  [ 1,  2,  3,  4,  5,  6,  7,  8,  9, 13],
+])
+print ("A={}".format(A))
+print ("det(A)={}".format(det(A)))
+
+print ("==> p-norm test")
+v = Array([
+  [1],
+  [2],
+  [3],
+])
+print ("v = {}".format(v))
+print ("p-norm (p=1) = {}".format(vector_norm(v, 1)))
+print ("p-norm (p=2) = {}".format(vector_norm(v, 2)))
+print ("p-norm (p=3) = {}".format(vector_norm(v, 3)))
+
+print ("==> Solve Ax=B system (jacobi)")
+A = Array([
+  [3, -1, -1],
+  [-1, 3, -1],
+  [-1, -1, 3],
+])
+B = Array([
+  [1],
+  [2],
+  [1],
+])
+print ("A = {}".format(A))
+print ("B = {}".format(B))
+x = solve(A, B, method="jacobi")
+print ("x = {}".format(x))
+
+print ("==> Solve Ax=B system (gauss-seidel)")
+A = Array([
+  [3, -1, -1],
+  [-1, 3, -1],
+  [-1, -1, 3],
+])
+B = Array([
+  [1],
+  [2],
+  [1],
+])
+print ("A = {}".format(A))
+print ("B = {}".format(B))
+x = solve(A, B, method="gauss_seidel")
+print ("x = {}".format(x))
+
+print ("==> Gauss-jordan elimination (exercise 4)")
+A = Array([
+  [5, -4, 1, 0],
+  [-4, 6, -4, 1],
+  [1, -4, 6, -4],
+  [0, 1, -4, 5],
+])
+B = Array([
+  [-1],
+  [2],
+  [1],
+  [3]
+])
+print ("A = {}".format(A))
+print ("B = {}".format(B))
+print ("-> Gauss")
+A, gauss_mid = gauss_elimination(A, return_intermediates=True)
+print ("-> Gauss-Jordan")
+A, jordan_mid = gauss_jordan_elimination(A, return_intermediates=True)
+

@@ -31,6 +31,10 @@ class Array (object):
   def iterable (self):
     return self.__iterable
 
+  @property
+  def t (self):
+    return self.transpose()
+
   # Pretty printer
   def __repr__ (self):
     ret = "alc.Array(\n"
@@ -71,19 +75,15 @@ class Array (object):
 
   # Matrix multiplication implementation
   def __matmul (self, mat1, mat2):
+    from alc.utils import zeros
     try:
       assert mat1.shape[1] == mat2.shape[0]
     except AssertionError:
       raise AssertionError("Matrices can't be multiplied with shapes {} and {}".format(mat1.shape, mat2.shape))
-    result = []
-    for i in range(mat1.shape[1]):
-      result.append([])
-      for j in range(mat2.shape[0]):
-        result[i].append(0)
-    result = Array(result)
-    for i in range(mat1.shape[1]):
-      for j in range(mat2.shape[0]):
-        for k in range(mat2.shape[1]):
+    result = zeros((mat1.shape[0], mat2.shape[1]))
+    for i in range(mat1.shape[0]):
+      for j in range(mat2.shape[1]):
+        for k in range(mat2.shape[0]):
           result[i][j] += mat1[i][k] * mat2[k][j]
     return result
 
@@ -162,3 +162,21 @@ class Array (object):
   def __invert__ (self):
     raise NotImplementedError("Hey! This is not implemented yet!")
 
+  # Get transpose
+  def transpose (self):
+    it = deepcopy(self.__iterable)
+    for i in range(self.shape[0]):
+      for j in range(self.shape[1]):
+        it[i][j] = self.__iterable[j][i]
+    return Array(it)
+
+  # Get trace
+  def trace (self):
+    if self.shape[0] != self.shape[1]:
+      raise ValueError ("Can only get trace of square matrices")
+    tr = 0
+    for i in range(self.shape[0]):
+      for j in range(self.shape[1]):
+        if i == j:
+          tr += self.__iterable[i][j]
+    return tr
