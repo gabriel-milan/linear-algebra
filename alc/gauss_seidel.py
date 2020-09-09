@@ -8,7 +8,7 @@ from alc.utils import random_array, zeros, vector_norm, is_diagonally_dominant, 
 def gauss_seidel (A, B, threshold=1e-3):
   if (not is_diagonally_dominant(A)):
     if (not is_definite_positive(A)):
-      raise ValueError("A matriz \"A\" não é estritamente diagonal dominante nem positiva definida e, portanto, o método de Jacobi não irá convergir!")
+      raise ValueError("A matriz \"A\" não é estritamente diagonal dominante nem positiva definida e, portanto, o método de Gauss-Seidel não irá convergir!")
   prev_x = random_array(B.shape)
   r = 1000
   n = B.shape[0]

@@ -1,4 +1,5 @@
 from alc import Array, ones, zeros, eye, gauss_elimination, lu_decomposition, solve, det, vector_norm, gauss_jordan_elimination
+from alc import cholesky_decomposition, is_definite_positive
 
 print ("==> Column vector test")
 arr = Array([
@@ -318,7 +319,7 @@ print ("B = {}".format(B))
 x = solve(A, B, method="gauss_seidel")
 print ("x = {}".format(x))
 
-print ("==> Gauss-jordan elimination (exercise 4)")
+print ("==> Solve exercise 4 w/ gauss only")
 A = Array([
   [5, -4, 1, 0],
   [-4, 6, -4, 1],
@@ -333,8 +334,90 @@ B = Array([
 ])
 print ("A = {}".format(A))
 print ("B = {}".format(B))
-print ("-> Gauss")
-A, gauss_mid = gauss_elimination(A, return_intermediates=True)
-print ("-> Gauss-Jordan")
-A, jordan_mid = gauss_jordan_elimination(A, return_intermediates=True)
+x = solve(A, B, method='gauss')
+print ("x = {}".format(x))
 
+print ("==> Solve exercise 4 w/ gauss-jordan")
+A = Array([
+  [5, -4, 1, 0],
+  [-4, 6, -4, 1],
+  [1, -4, 6, -4],
+  [0, 1, -4, 5],
+])
+B = Array([
+  [-1],
+  [2],
+  [1],
+  [3]
+])
+print ("A = {}".format(A))
+print ("B = {}".format(B))
+x = solve(A, B, method='gauss_jordan')
+print ("x = {}".format(x))
+
+print ("==> Inversion test")
+A = Array([
+  [5, -4, 1, 0],
+  [-4, 6, -4, 1],
+  [1, -4, 6, -4],
+  [0, 1, -4, 5],
+])
+print ("A = {}".format(A))
+print ("A^(-1) = {}".format(~A))
+print ("A * (A^-1) = {}".format(A*(~A)))
+print ("(A^-1) * A = {}".format((~A)*A))
+
+print ("==> Cholesky decomposition")
+A = Array([
+  [ 1,  0.2, 0.4],
+  [0.2,  1 , 0.5],
+  [0.4, 0.5,  1 ],
+])
+print ("A = {}".format(A))
+l, lt = cholesky_decomposition(A)
+print ("L = {}".format(l))
+print ("L.t = {}".format(lt))
+
+print ("==> is_definite_positive")
+A = Array([
+  [5, -4, 1, 0],
+  [-4, 6, -4, 1],
+  [1, -4, 6, -4],
+  [0, 1, -4, 5],
+])
+print ("A = {}".format(A))
+print ("Definite positive? {}".format(is_definite_positive(A)))
+
+print ("==> Solve exercise 4 w/ LU")
+A = Array([
+  [5, -4, 1, 0],
+  [-4, 6, -4, 1],
+  [1, -4, 6, -4],
+  [0, 1, -4, 5],
+])
+B = Array([
+  [-1],
+  [2],
+  [1],
+  [3]
+])
+print ("A = {}".format(A))
+print ("B = {}".format(B))
+x = solve(A, B, method='lu')
+print ("x = {}".format(x))
+
+print ("==> Solve Ax=B w/ Cholesky")
+A = Array([
+  [ 1,  0.2, 0.4],
+  [0.2,  1 , 0.5],
+  [0.4, 0.5,  1 ],
+])
+B = Array([
+  [ 0.6],
+  [-0.3],
+  [-0.6],
+])
+print ("A = {}".format(A))
+print ("B = {}".format(B))
+x = solve(A, B, method='cholesky')
+print ("x = {}".format(x))

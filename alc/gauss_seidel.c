@@ -1251,7 +1251,7 @@ static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_alc_gauss_seidel_py[] = "alc/gauss_seidel.py";
 static const char __pyx_k_is_definite_positive[] = "is_definite_positive";
 static const char __pyx_k_is_diagonally_dominant[] = "is_diagonally_dominant";
-static const char __pyx_k_A_matriz_A_no_estritamente_diago[] = "A matriz \"A\" n\303\243o \303\251 estritamente diagonal dominante nem positiva definida e, portanto, o m\303\251todo de Jacobi n\303\243o ir\303\241 convergir!";
+static const char __pyx_k_A_matriz_A_no_estritamente_diago[] = "A matriz \"A\" n\303\243o \303\251 estritamente diagonal dominante nem positiva definida e, portanto, o m\303\251todo de Gauss-Seidel n\303\243o ir\303\241 convergir!";
 static PyObject *__pyx_n_s_A;
 static PyObject *__pyx_kp_u_A_matriz_A_no_estritamente_diago;
 static PyObject *__pyx_n_s_B;
@@ -1411,7 +1411,7 @@ static PyObject *__pyx_pf_3alc_12gauss_seidel_gauss_seidel(CYTHON_UNUSED PyObjec
  * def gauss_seidel (A, B, threshold=1e-3):
  *   if (not is_diagonally_dominant(A)):             # <<<<<<<<<<<<<<
  *     if (not is_definite_positive(A)):
- *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Jacobi no ir convergir!")
+ *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_is_diagonally_dominant); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -1439,7 +1439,7 @@ static PyObject *__pyx_pf_3alc_12gauss_seidel_gauss_seidel(CYTHON_UNUSED PyObjec
  * def gauss_seidel (A, B, threshold=1e-3):
  *   if (not is_diagonally_dominant(A)):
  *     if (not is_definite_positive(A)):             # <<<<<<<<<<<<<<
- *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Jacobi no ir convergir!")
+ *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
  *   prev_x = random_array(B.shape)
  */
     __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_is_definite_positive); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 10, __pyx_L1_error)
@@ -1467,7 +1467,7 @@ static PyObject *__pyx_pf_3alc_12gauss_seidel_gauss_seidel(CYTHON_UNUSED PyObjec
       /* "alc/gauss_seidel.py":11
  *   if (not is_diagonally_dominant(A)):
  *     if (not is_definite_positive(A)):
- *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Jacobi no ir convergir!")             # <<<<<<<<<<<<<<
+ *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Gauss-Seidel no ir convergir!")             # <<<<<<<<<<<<<<
  *   prev_x = random_array(B.shape)
  *   r = 1000
  */
@@ -1481,7 +1481,7 @@ static PyObject *__pyx_pf_3alc_12gauss_seidel_gauss_seidel(CYTHON_UNUSED PyObjec
  * def gauss_seidel (A, B, threshold=1e-3):
  *   if (not is_diagonally_dominant(A)):
  *     if (not is_definite_positive(A)):             # <<<<<<<<<<<<<<
- *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Jacobi no ir convergir!")
+ *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
  *   prev_x = random_array(B.shape)
  */
     }
@@ -1491,13 +1491,13 @@ static PyObject *__pyx_pf_3alc_12gauss_seidel_gauss_seidel(CYTHON_UNUSED PyObjec
  * def gauss_seidel (A, B, threshold=1e-3):
  *   if (not is_diagonally_dominant(A)):             # <<<<<<<<<<<<<<
  *     if (not is_definite_positive(A)):
- *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Jacobi no ir convergir!")
+ *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
  */
   }
 
   /* "alc/gauss_seidel.py":12
  *     if (not is_definite_positive(A)):
- *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Jacobi no ir convergir!")
+ *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
  *   prev_x = random_array(B.shape)             # <<<<<<<<<<<<<<
  *   r = 1000
  *   n = B.shape[0]
@@ -1526,7 +1526,7 @@ static PyObject *__pyx_pf_3alc_12gauss_seidel_gauss_seidel(CYTHON_UNUSED PyObjec
   __pyx_t_1 = 0;
 
   /* "alc/gauss_seidel.py":13
- *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Jacobi no ir convergir!")
+ *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
  *   prev_x = random_array(B.shape)
  *   r = 1000             # <<<<<<<<<<<<<<
  *   n = B.shape[0]
@@ -2191,7 +2191,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "alc/gauss_seidel.py":11
  *   if (not is_diagonally_dominant(A)):
  *     if (not is_definite_positive(A)):
- *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Jacobi no ir convergir!")             # <<<<<<<<<<<<<<
+ *       raise ValueError("A matriz \"A\" no  estritamente diagonal dominante nem positiva definida e, portanto, o mtodo de Gauss-Seidel no ir convergir!")             # <<<<<<<<<<<<<<
  *   prev_x = random_array(B.shape)
  *   r = 1000
  */

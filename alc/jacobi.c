@@ -1242,7 +1242,7 @@ static const char __pyx_k_random_array[] = "random_array";
 static const char __pyx_k_alc_jacobi_py[] = "alc/jacobi.py";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_is_diagonally_dominant[] = "is_diagonally_dominant";
-static const char __pyx_k_A_matriz_A_no_estritamente_diago[] = "A matriz \"A\" n\303\243o \303\251 estritamente diagonal dominante e, portanto, o m\303\251todo de Gauss-Seidel n\303\243o ir\303\241 convergir!";
+static const char __pyx_k_A_matriz_A_no_estritamente_diago[] = "A matriz \"A\" n\303\243o \303\251 estritamente diagonal dominante e, portanto, o m\303\251todo de Jacobi n\303\243o ir\303\241 convergir!";
 static PyObject *__pyx_n_s_A;
 static PyObject *__pyx_kp_u_A_matriz_A_no_estritamente_diago;
 static PyObject *__pyx_n_s_B;
@@ -1289,7 +1289,7 @@ static PyObject *__pyx_codeobj__3;
  * 
  * def jacobi (A, B, threshold=1e-3):             # <<<<<<<<<<<<<<
  *   if (not is_diagonally_dominant(A)):
- *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
+ *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Jacobi no ir convergir!")
  */
 
 /* Python wrapper */
@@ -1399,7 +1399,7 @@ static PyObject *__pyx_pf_3alc_6jacobi_jacobi(CYTHON_UNUSED PyObject *__pyx_self
  * 
  * def jacobi (A, B, threshold=1e-3):
  *   if (not is_diagonally_dominant(A)):             # <<<<<<<<<<<<<<
- *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
+ *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Jacobi no ir convergir!")
  *   prev_x = random_array(B.shape)
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_is_diagonally_dominant); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
@@ -1427,7 +1427,7 @@ static PyObject *__pyx_pf_3alc_6jacobi_jacobi(CYTHON_UNUSED PyObject *__pyx_self
     /* "alc/jacobi.py":10
  * def jacobi (A, B, threshold=1e-3):
  *   if (not is_diagonally_dominant(A)):
- *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Gauss-Seidel no ir convergir!")             # <<<<<<<<<<<<<<
+ *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Jacobi no ir convergir!")             # <<<<<<<<<<<<<<
  *   prev_x = random_array(B.shape)
  *   r = 1000
  */
@@ -1441,14 +1441,14 @@ static PyObject *__pyx_pf_3alc_6jacobi_jacobi(CYTHON_UNUSED PyObject *__pyx_self
  * 
  * def jacobi (A, B, threshold=1e-3):
  *   if (not is_diagonally_dominant(A)):             # <<<<<<<<<<<<<<
- *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
+ *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Jacobi no ir convergir!")
  *   prev_x = random_array(B.shape)
  */
   }
 
   /* "alc/jacobi.py":11
  *   if (not is_diagonally_dominant(A)):
- *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
+ *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Jacobi no ir convergir!")
  *   prev_x = random_array(B.shape)             # <<<<<<<<<<<<<<
  *   r = 1000
  *   n = B.shape[0]
@@ -1477,7 +1477,7 @@ static PyObject *__pyx_pf_3alc_6jacobi_jacobi(CYTHON_UNUSED PyObject *__pyx_self
   __pyx_t_1 = 0;
 
   /* "alc/jacobi.py":12
- *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
+ *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Jacobi no ir convergir!")
  *   prev_x = random_array(B.shape)
  *   r = 1000             # <<<<<<<<<<<<<<
  *   n = B.shape[0]
@@ -1936,7 +1936,7 @@ static PyObject *__pyx_pf_3alc_6jacobi_jacobi(CYTHON_UNUSED PyObject *__pyx_self
  * 
  * def jacobi (A, B, threshold=1e-3):             # <<<<<<<<<<<<<<
  *   if (not is_diagonally_dominant(A)):
- *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
+ *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Jacobi no ir convergir!")
  */
 
   /* function exit code */
@@ -2055,7 +2055,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "alc/jacobi.py":10
  * def jacobi (A, B, threshold=1e-3):
  *   if (not is_diagonally_dominant(A)):
- *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Gauss-Seidel no ir convergir!")             # <<<<<<<<<<<<<<
+ *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Jacobi no ir convergir!")             # <<<<<<<<<<<<<<
  *   prev_x = random_array(B.shape)
  *   r = 1000
  */
@@ -2068,7 +2068,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * def jacobi (A, B, threshold=1e-3):             # <<<<<<<<<<<<<<
  *   if (not is_diagonally_dominant(A)):
- *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
+ *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Jacobi no ir convergir!")
  */
   __pyx_tuple__2 = PyTuple_Pack(9, __pyx_n_s_A, __pyx_n_s_B, __pyx_n_s_threshold, __pyx_n_s_prev_x, __pyx_n_s_r, __pyx_n_s_n, __pyx_n_s_x, __pyx_n_s_i, __pyx_n_s_j); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
@@ -2438,7 +2438,7 @@ if (!__Pyx_RefNanny) {
  * 
  * def jacobi (A, B, threshold=1e-3):             # <<<<<<<<<<<<<<
  *   if (not is_diagonally_dominant(A)):
- *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Gauss-Seidel no ir convergir!")
+ *     raise ValueError("A matriz \"A\" no  estritamente diagonal dominante e, portanto, o mtodo de Jacobi no ir convergir!")
  */
   __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_3alc_6jacobi_1jacobi, 0, __pyx_n_s_jacobi, NULL, __pyx_n_s_alc_jacobi, __pyx_d, ((PyObject *)__pyx_codeobj__3)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);

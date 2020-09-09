@@ -2,8 +2,14 @@ __all__ = [
   "eye",
   "zeros",
   "ones",
+  "random_array",
   "det",
-  "vector_norm"
+  "vector_norm",
+  "is_square",
+  "is_diagonally_dominant",
+  "is_symmetric",
+  "is_definite_positive",
+  "invert",
 ]
 
 from alc.Array import Array
@@ -105,5 +111,26 @@ def is_definite_positive (arr):
   """
   Checks whether a matrix is definite positive
   """
-  # TODO: Implement
-  return False
+  from alc.decomposition import cholesky_decomposition
+  try:
+    _, _ = cholesky_decomposition(arr)
+    return True
+  except ValueError:
+    return False
+
+def invert (arr, bypass=False):
+  if ((arr.shape[0] != arr.shape[1]) and (not bypass)):
+    raise ValueError("Inverting arrays has only been tested for square matrices. If you want to proceed anyway, set bypass=True on function call.")
+  from alc.gauss import gauss_jordan_elimination, gauss_elimination
+  arr, gauss_mid = gauss_elimination (arr, return_intermediates=True, show_steps=False, return_pivots=False)
+  arr, jordan_mid = gauss_jordan_elimination (arr, return_intermediates=True, show_steps=False)
+  m = eye(arr.shape[0])
+  for i in range(arr.shape[0]):
+    m[i][i] = 1. / arr[i][i]
+  inv = eye(arr.shape[0])
+  for mid in gauss_mid:
+    inv = mid * inv
+  for mid in jordan_mid:
+    inv = mid * inv
+  inv = m * inv
+  return inv

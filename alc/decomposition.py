@@ -1,8 +1,9 @@
 __all__ = [
-  'lu_decomposition'
+  'lu_decomposition',
+  'cholesky_decomposition'
 ]
 
-from alc.utils import eye
+from alc.utils import eye, zeros
 from alc.gauss import gauss_elimination
 
 def mi_to_li (arr):
@@ -37,3 +38,20 @@ def lu_decomposition (arr, return_det=False):
   if return_det:
     return L, arr, det
   return L, arr
+
+def cholesky_decomposition (arr):
+  L = zeros(arr.shape)
+  for i in range(arr.shape[0]):
+    L[i][i] = arr[i][i]
+    for k in range(0, i):
+      L[i][i] -= (L[i][k] ** 2)
+    L[i][i] = (L[i][i] ** (1/2))
+    for j in range(i + 1, arr.shape[1]):
+      L[j][i] = arr[i][j]
+      for k in range(0, i):
+        L[j][i] -= (L[i][k]*L[j][k])
+      L[j][i] /= L[i][i]
+  if ((L * L.t) == arr):
+    return L, L.t
+  else:
+    raise ValueError("Não é possível realizar a decomposição de Cholesky. A matriz fornecida não é simétrica positiva definida.")

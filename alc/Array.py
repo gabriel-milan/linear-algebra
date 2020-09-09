@@ -160,7 +160,9 @@ class Array (object):
 
   # Inverting matrix
   def __invert__ (self):
-    raise NotImplementedError("Hey! This is not implemented yet!")
+    from alc.utils import invert
+    arr = Array(deepcopy(self.__iterable))
+    return invert(arr)
 
   # Get transpose
   def transpose (self):
