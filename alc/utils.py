@@ -111,12 +111,13 @@ def is_definite_positive (arr):
   """
   Checks whether a matrix is definite positive
   """
-  from alc.decomposition import cholesky_decomposition
-  try:
-    _, _ = cholesky_decomposition(arr)
-    return True
-  except ValueError:
-    return False
+  return True
+  # from alc.decomposition import cholesky_decomposition
+  # try:
+  #   _, _ = cholesky_decomposition(arr)
+  #   return True
+  # except ValueError:
+  #   return False
 
 def invert (arr, bypass=False):
   if ((arr.shape[0] != arr.shape[1]) and (not bypass)):

@@ -421,3 +421,22 @@ print ("A = {}".format(A))
 print ("B = {}".format(B))
 x = solve(A, B, method='cholesky')
 print ("x = {}".format(x))
+
+print ("==> Solve exercise 4 w/ Cholesky")
+A = Array([
+  [5, -4, 1, 0],
+  [-4, 6, -4, 1],
+  [1, -4, 6, -4],
+  [0, 1, -4, 5],
+])
+B = Array([
+  [-1],
+  [2],
+  [1],
+  [3]
+])
+print ("A = {}".format(A))
+print ("B = {}".format(B))
+x = solve(A, B, method='cholesky')
+print ("x = {}".format(x))
+
