@@ -63,5 +63,6 @@ python3 -m pip install .
 - [x] alc.solve: função para resolver sistemas do tipo `Ax=B` com múltiplos métodos
 - [x] alc.gauss_seidel: implementa o método de Gauss-Seidel
 - [x] alc.jacobi: implementa o método de Jacobi
+- [x] alc.power_method: implementa o power method, ou método das potências
 - [ ] Lista 2
 - [ ] Lista 3

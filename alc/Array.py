@@ -179,7 +179,14 @@ class Array (object):
 
   # Matrix division
   def __truediv__ (self, other):
-    return self * ~other
+    if issubclass(self.__class__, other.__class__):
+      return self * ~other
+    else:
+      it = deepcopy(self.__iterable)
+      for i in range(self.shape[0]):
+        for j in range(self.shape[1]):
+          it[i][j] /= other
+      return Array(it)
 
   def __rtruediv__ (self, other):
     return self.__truediv__(other)

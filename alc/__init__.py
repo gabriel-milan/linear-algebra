@@ -31,3 +31,7 @@ from .gauss_seidel import *
 from . import jacobi
 __all__.extend(jacobi.__all__)
 from .jacobi import *
+
+from . import eigen
+__all__.extend(eigen.__all__)
+from .eigen import *
