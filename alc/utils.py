@@ -12,6 +12,7 @@ __all__ = [
   "invert",
 ]
 
+import math
 from alc.Array import Array
 from alc.constants import constants
 
@@ -136,3 +137,29 @@ def invert (arr, bypass=False):
     inv = mid * inv
   inv = m * inv
   return inv
+
+def get_greater_value_outside_diagonal (arr):
+  greater = 0
+  greater_i = 0
+  greater_j = 0
+  for i in range(arr.shape[0]):
+    for j in range(arr.shape[1]):
+      if (i != j):
+        val = abs(arr[i][j])
+        if val > greater:
+          greater = val
+          greater_i = i
+          greater_j = j
+  return greater, greater_i, greater_j
+
+def generate_p_matrix (arr, i, j):
+  if (arr[i][i] != arr[j][j]):
+    phi = 1. / 2. * math.atan((2 * arr[i][j]) / (arr[i][i] - arr[j][j]))
+  else:
+    phi = math.pi / 4
+  p = eye (arr.shape[0])
+  p[i][i] = math.cos(phi)
+  p[i][j] = -math.sin(phi)
+  p[j][i] = math.sin(phi)
+  p[j][j] = math.cos(phi)
+  return p
