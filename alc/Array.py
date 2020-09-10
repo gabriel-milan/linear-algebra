@@ -85,6 +85,23 @@ class Array (object):
   def __setitem__ (self, key, val):
     self.__iterable[key] = val
 
+  # Get submatrix
+  def submatrix (self, shape):
+    try:
+      if len(shape) != 2:
+        raise ValueError("Shape of submatrix must have two values")
+      for i in range(2):
+        if (shape[i] < 1) or (shape[i] > self.shape[i]):
+          raise ValueError("Shape must be 1 <= k <= n")
+      it = []
+      for i in range(shape[0]):
+        it.append([])
+        for j in range(shape[1]):
+          it[i].append(self.__iterable[i][j])
+      return Array(it)
+    except TypeError:
+      raise TypeError("Input for submatrix must be an iterable with two values")
+
   # Matrix multiplication implementation
   def __matmul (self, mat1, mat2):
     from alc.utils import zeros

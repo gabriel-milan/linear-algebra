@@ -13,7 +13,7 @@ def mi_to_li (arr):
         arr[i][j] *= -1
   return arr
 
-def lu_decomposition (arr, return_det=False):
+def lu_decomposition (arr, return_det=False, show_warnings=True):
   # First of all, gauss elimination (arr will be U)
   arr, intermediates, pivots = gauss_elimination(arr, return_intermediates=True, show_steps=False, return_pivots=True)
   # Then, Li=Mi with elements other than diagonal multiplied by -1
@@ -39,11 +39,10 @@ def lu_decomposition (arr, return_det=False):
     return L, arr, det
   return L, arr
 
-def cholesky_decomposition (arr, bypass_tests=False):
-  from alc.utils import is_definite_positive
-  if (not bypass_tests):
-    if (not is_definite_positive(arr)):
-      raise ValueError("Não é possível realizar a decomposição de Cholesky. A matriz fornecida não é simétrica positiva definida.")
+def cholesky_decomposition (arr):
+  from alc.utils import is_definite_positive, is_symmetric
+  if (not is_definite_positive(arr) or not is_symmetric(arr)):
+    raise ValueError("Não é possível realizar a decomposição de Cholesky. A matriz fornecida não é simétrica positiva definida.")
   L = zeros(arr.shape)
   for i in range(arr.shape[0]):
     L[i][i] = arr[i][i]

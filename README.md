@@ -54,7 +54,7 @@ python3 -m pip install .
 - [x] alc.is_square: função para verificar se a matriz é quadrada
 - [x] alc.is_diagonally_dominant: função para verificar se a matriz é estritamente diagonal dominante
 - [x] alc.is_symmetric: função para verificar se a matriz é simétrica
-- [ ] alc.is_definite_positive: função para verificar se a matriz é positiva definida
+- [x] alc.is_definite_positive: função para verificar se a matriz é positiva definida
 - [x] alc.invert: função para inverter matrizes
 - [x] alc.gauss_elimination: implementa o método de eliminação de Gauss
 - [x] alc.gauss_jordan_elimination: implementa o método de eliminação de Gauss-Jordan

@@ -62,7 +62,7 @@ def random_array (shape):
 
 def det (arr):
   from alc.decomposition import lu_decomposition
-  _, _, det = lu_decomposition(arr, return_det=True)
+  _, _, det = lu_decomposition(arr, return_det=True, show_warnings=False)
   return round(det, constants.decimal_places)
 
 def vector_norm (vec, p=2):
@@ -112,12 +112,13 @@ def is_definite_positive (arr):
   """
   Checks whether a matrix is definite positive
   """
-  from alc.decomposition import cholesky_decomposition
-  try:
-    _, _ = cholesky_decomposition(arr, bypass_tests=True)
-    return True
-  except ValueError:
+  if not is_square(arr):
     return False
+  for k in range(1, arr.shape[0] + 1):
+    determinant = det(arr.submatrix((k,k)))
+    if (determinant < 0):
+      return False
+  return True
 
 def invert (arr, bypass=False):
   if ((arr.shape[0] != arr.shape[1]) and (not bypass)):
