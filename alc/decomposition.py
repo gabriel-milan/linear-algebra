@@ -39,10 +39,11 @@ def lu_decomposition (arr, return_det=False):
     return L, arr, det
   return L, arr
 
-def cholesky_decomposition (arr):
+def cholesky_decomposition (arr, bypass_tests=False):
   from alc.utils import is_definite_positive
-  if (not is_definite_positive(arr)):
-    raise ValueError("Não é possível realizar a decomposição de Cholesky. A matriz fornecida não é simétrica positiva definida.")
+  if (not bypass_tests):
+    if (not is_definite_positive(arr)):
+      raise ValueError("Não é possível realizar a decomposição de Cholesky. A matriz fornecida não é simétrica positiva definida.")
   L = zeros(arr.shape)
   for i in range(arr.shape[0]):
     L[i][i] = arr[i][i]

@@ -1,5 +1,9 @@
 __all__ = []
 
+from . import constants
+__all__.extend(constants.__all__)
+from .constants import *
+
 from . import Array
 __all__.extend(Array.__all__)
 from .Array import *

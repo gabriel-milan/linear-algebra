@@ -7,6 +7,8 @@ clean:
 build:
 	python3 setup.py build_ext --inplace
 install:
-	python3 setup.py install
+	python3 -m pip install .
+uninstall:
+	python3 -m pip uninstall alc
 run_test:
 	python3 test_array.py

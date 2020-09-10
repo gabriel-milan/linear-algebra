@@ -3,6 +3,7 @@ __all__ = [
 ]
 
 from copy import deepcopy
+from alc.constants import constants
 
 class Array (object):
 
@@ -35,14 +36,23 @@ class Array (object):
   def t (self):
     return self.transpose()
 
+  # Rounding elements according to epsilon
+  def __epsilonRound (self):
+    it = deepcopy(self.__iterable)
+    for i in range(self.shape[0]):
+      for j in range(self.shape[1]):
+        it[i][j] = round(it[i][j], constants.decimal_places)
+    return it
+
   # Pretty printer
   def __repr__ (self):
     ret = "alc.Array(\n"
+    it = self.__epsilonRound()
     if self.shape[0] == 1:
-      ret += "{},\n".format(self.__iterable)
+      ret += "{},\n".format(it)
     else:
       for i in range(self.shape[0]):
-        ret += "{},\n".format(self.__iterable[i])
+        ret += "{},\n".format(it[i])
     return ret + ")"
 
   def __str__ (self):
@@ -61,6 +71,8 @@ class Array (object):
       for i in range(self.shape[0]):
         for j in range(self.shape[1]):
           it[i][j] *= other
+          if (abs(it[i][j]) <= constants.epsilon):
+            it[i][j] = 0.0
       return Array(it)
 
   # Item getter
@@ -85,12 +97,21 @@ class Array (object):
       for j in range(mat2.shape[1]):
         for k in range(mat2.shape[0]):
           result[i][j] += mat1[i][k] * mat2[k][j]
+        if (abs(result[i][j]) <= constants.epsilon):
+          result[i][j] = 0.0
     return result
 
   # Matrix comparison
   def __eq__ (self, other):
     if issubclass(self.__class__, other.__class__):
-      return self.__iterable == other.iterable
+      try:
+        for i in range(self.shape[0]):
+          for j in range(self.shape[1]):
+            if (abs(self[i][j] - other[i][j]) > constants.epsilon):
+              return False
+        return True
+      except IndexError:
+        return False
     else:
       raise TypeError("Always compare alc.Array objects instead of anything else")
   
@@ -108,6 +129,8 @@ class Array (object):
       for i in range(self.shape[0]):
         for j in range(self.shape[1]):
           it[i][j] += other[i][j]
+          if (abs(it[i][j]) <= constants.epsilon):
+            it[i][j] = 0.0
       return Array(it)
     else:
       raise TypeError("Always compare alc.Array objects instead of anything else")
@@ -127,6 +150,8 @@ class Array (object):
       for i in range(self.shape[0]):
         for j in range(self.shape[1]):
           it[i][j] -= other[i][j]
+          if (abs(it[i][j]) <= constants.epsilon):
+            it[i][j] = 0.0
       return Array(it)
     else:
       raise TypeError("Always compare alc.Array objects instead of anything else")
@@ -137,7 +162,7 @@ class Array (object):
 
   # Matrix division
   def __truediv__ (self, other):
-    raise NotImplementedError("Hey! This is not implemented yet!")
+    return self * ~other
 
   def __rtruediv__ (self, other):
     return self.__truediv__(other)

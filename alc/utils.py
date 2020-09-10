@@ -13,6 +13,7 @@ __all__ = [
 ]
 
 from alc.Array import Array
+from alc.constants import constants
 
 def eye (shape):
   if not issubclass(int, shape.__class__):
@@ -62,7 +63,7 @@ def random_array (shape):
 def det (arr):
   from alc.decomposition import lu_decomposition
   _, _, det = lu_decomposition(arr, return_det=True)
-  return det
+  return round(det, constants.decimal_places)
 
 def vector_norm (vec, p=2):
   if ((vec.shape[0] != 1) and (vec.shape[1] != 1)):
@@ -71,7 +72,7 @@ def vector_norm (vec, p=2):
   for i in range(vec.shape[0]):
     for j in range(vec.shape[1]):
       p_sum += vec[i][j] ** p
-  return p_sum ** (1./p)
+  return round(p_sum ** (1./p), constants.decimal_places)
 
 def is_square (arr):
   """
@@ -111,13 +112,12 @@ def is_definite_positive (arr):
   """
   Checks whether a matrix is definite positive
   """
-  return True
-  # from alc.decomposition import cholesky_decomposition
-  # try:
-  #   _, _ = cholesky_decomposition(arr)
-  #   return True
-  # except ValueError:
-  #   return False
+  from alc.decomposition import cholesky_decomposition
+  try:
+    _, _ = cholesky_decomposition(arr, bypass_tests=True)
+    return True
+  except ValueError:
+    return False
 
 def invert (arr, bypass=False):
   if ((arr.shape[0] != arr.shape[1]) and (not bypass)):
