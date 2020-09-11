@@ -3,9 +3,10 @@ __all__ = [
 ]
 
 from copy import deepcopy
+from alc.constants import constants
 from alc.utils import random_array, zeros, vector_norm, is_diagonally_dominant
 
-def jacobi (A, B, threshold=1e-3):
+def jacobi (A, B, threshold=constants.epsilon):
   if (not is_diagonally_dominant(A)):
     raise ValueError("A matriz \"A\" não é estritamente diagonal dominante e, portanto, o método de Jacobi não irá convergir!")
   prev_x = random_array(B.shape)

@@ -1236,8 +1236,7 @@ int __pyx_module_is_main_alc__eigen = 0;
 
 /* Implementation of 'alc.eigen' */
 static PyObject *__pyx_builtin_ValueError;
-static PyObject *__pyx_builtin_print;
-static const char __pyx_k_A[] = "A={}";
+static const char __pyx_k_A[] = "A";
 static const char __pyx_k_P[] = "P";
 static const char __pyx_k_X[] = "X";
 static const char __pyx_k_i[] = "i";
@@ -1246,16 +1245,13 @@ static const char __pyx_k_r[] = "r";
 static const char __pyx_k_t[] = "t";
 static const char __pyx_k_x[] = "x";
 static const char __pyx_k_y[] = "y";
-static const char __pyx_k_A_2[] = "A";
 static const char __pyx_k_all[] = "__all__";
 static const char __pyx_k_arr[] = "arr";
 static const char __pyx_k_eye[] = "eye";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_print[] = "print";
 static const char __pyx_k_shape[] = "shape";
-static const char __pyx_k_format[] = "format";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_epsilon[] = "epsilon";
 static const char __pyx_k_greater[] = "greater";
@@ -1274,12 +1270,9 @@ static const char __pyx_k_random_array[] = "random_array";
 static const char __pyx_k_alc_constants[] = "alc.constants";
 static const char __pyx_k_generate_p_matrix[] = "generate_p_matrix";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_Greater_for_matrix_A_is[] = "Greater for matrix A is {}";
 static const char __pyx_k_Input_matrices_for_Jacobi_method[] = "Input matrices for Jacobi method must be symmetric.";
 static const char __pyx_k_get_greater_value_outside_diagon[] = "get_greater_value_outside_diagonal";
-static PyObject *__pyx_kp_u_A;
-static PyObject *__pyx_n_s_A_2;
-static PyObject *__pyx_kp_u_Greater_for_matrix_A_is;
+static PyObject *__pyx_n_s_A;
 static PyObject *__pyx_kp_u_Input_matrices_for_Jacobi_method;
 static PyObject *__pyx_n_s_P;
 static PyObject *__pyx_n_s_ValueError;
@@ -1294,7 +1287,6 @@ static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_constants;
 static PyObject *__pyx_n_s_epsilon;
 static PyObject *__pyx_n_s_eye;
-static PyObject *__pyx_n_s_format;
 static PyObject *__pyx_n_s_generate_p_matrix;
 static PyObject *__pyx_n_s_get_greater_value_outside_diagon;
 static PyObject *__pyx_n_s_greater;
@@ -1310,7 +1302,6 @@ static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_new_lambda_i;
 static PyObject *__pyx_n_s_power_method;
 static PyObject *__pyx_n_u_power_method;
-static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_r;
 static PyObject *__pyx_n_s_random_array;
 static PyObject *__pyx_n_s_shape;
@@ -1864,7 +1855,7 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
  *   A = arr
  *   X = eye(arr.shape[0])             # <<<<<<<<<<<<<<
  *   greater, i, j = get_greater_value_outside_diagonal(A)
- *   print ("A={}".format(A))
+ *   while (greater > threshold):
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_eye); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -1896,8 +1887,8 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
  *   A = arr
  *   X = eye(arr.shape[0])
  *   greater, i, j = get_greater_value_outside_diagonal(A)             # <<<<<<<<<<<<<<
- *   print ("A={}".format(A))
- *   print ("Greater for matrix A is {}".format(greater))
+ *   while (greater > threshold):
+ *     P = generate_p_matrix(A, i, j)
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_get_greater_value_outside_diagon); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -1979,82 +1970,24 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
   /* "alc/eigen.py":32
  *   X = eye(arr.shape[0])
  *   greater, i, j = get_greater_value_outside_diagonal(A)
- *   print ("A={}".format(A))             # <<<<<<<<<<<<<<
- *   print ("Greater for matrix A is {}".format(greater))
- *   while (greater > threshold):
- */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_A, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_6)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_6);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_6, __pyx_v_A) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_A);
-  __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "alc/eigen.py":33
- *   greater, i, j = get_greater_value_outside_diagonal(A)
- *   print ("A={}".format(A))
- *   print ("Greater for matrix A is {}".format(greater))             # <<<<<<<<<<<<<<
- *   while (greater > threshold):
- *     P = generate_p_matrix(A, i, j)
- */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Greater_for_matrix_A_is, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_6)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_6);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-    }
-  }
-  __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_6, __pyx_v_greater) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_greater);
-  __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "alc/eigen.py":34
- *   print ("A={}".format(A))
- *   print ("Greater for matrix A is {}".format(greater))
  *   while (greater > threshold):             # <<<<<<<<<<<<<<
  *     P = generate_p_matrix(A, i, j)
  *     A = P.t * A * P
  */
   while (1) {
-    __pyx_t_1 = PyObject_RichCompare(__pyx_v_greater, __pyx_v_threshold, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_v_greater, __pyx_v_threshold, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 32, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (!__pyx_t_5) break;
 
-    /* "alc/eigen.py":35
- *   print ("Greater for matrix A is {}".format(greater))
+    /* "alc/eigen.py":33
+ *   greater, i, j = get_greater_value_outside_diagonal(A)
  *   while (greater > threshold):
  *     P = generate_p_matrix(A, i, j)             # <<<<<<<<<<<<<<
  *     A = P.t * A * P
  *     X = X * P
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_generate_p_matrix); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_generate_p_matrix); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_6 = NULL;
     __pyx_t_9 = 0;
@@ -2071,7 +2004,7 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_v_A, __pyx_v_i, __pyx_v_j};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -2079,13 +2012,13 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_v_A, __pyx_v_i, __pyx_v_j};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_2 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+      __pyx_t_2 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       if (__pyx_t_6) {
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -2099,7 +2032,7 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
       __Pyx_INCREF(__pyx_v_j);
       __Pyx_GIVEREF(__pyx_v_j);
       PyTuple_SET_ITEM(__pyx_t_2, 2+__pyx_t_9, __pyx_v_j);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
@@ -2107,44 +2040,43 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
     __Pyx_XDECREF_SET(__pyx_v_P, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "alc/eigen.py":36
+    /* "alc/eigen.py":34
  *   while (greater > threshold):
  *     P = generate_p_matrix(A, i, j)
  *     A = P.t * A * P             # <<<<<<<<<<<<<<
  *     X = X * P
  *     greater, i, j = get_greater_value_outside_diagonal(A)
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_P, __pyx_n_s_t); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_P, __pyx_n_s_t); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_v_A); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_v_A); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 34, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Multiply(__pyx_t_3, __pyx_v_P); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(__pyx_t_3, __pyx_v_P); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF_SET(__pyx_v_A, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "alc/eigen.py":37
+    /* "alc/eigen.py":35
  *     P = generate_p_matrix(A, i, j)
  *     A = P.t * A * P
  *     X = X * P             # <<<<<<<<<<<<<<
  *     greater, i, j = get_greater_value_outside_diagonal(A)
- *     print ("A={}".format(A))
+ *   return A, X
  */
-    __pyx_t_1 = PyNumber_Multiply(__pyx_v_X, __pyx_v_P); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(__pyx_v_X, __pyx_v_P); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_X, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "alc/eigen.py":38
+    /* "alc/eigen.py":36
  *     A = P.t * A * P
  *     X = X * P
  *     greater, i, j = get_greater_value_outside_diagonal(A)             # <<<<<<<<<<<<<<
- *     print ("A={}".format(A))
- *     print ("Greater for matrix A is {}".format(greater))
+ *   return A, X
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_get_greater_value_outside_diagon); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_get_greater_value_outside_diagon); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_2 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -2158,7 +2090,7 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
     }
     __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_A) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_A);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -2167,7 +2099,7 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
       if (unlikely(size != 3)) {
         if (size > 3) __Pyx_RaiseTooManyValuesError(3);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 38, __pyx_L1_error)
+        __PYX_ERR(0, 36, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -2183,17 +2115,17 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
       __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_6 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 38, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 36, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 38, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 36, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -2203,7 +2135,7 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
       __Pyx_GOTREF(__pyx_t_2);
       index = 2; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L8_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 3) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 3) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L9_unpacking_done;
@@ -2211,7 +2143,7 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 38, __pyx_L1_error)
+      __PYX_ERR(0, 36, __pyx_L1_error)
       __pyx_L9_unpacking_done:;
     }
     __Pyx_DECREF_SET(__pyx_v_greater, __pyx_t_3);
@@ -2220,72 +2152,15 @@ static PyObject *__pyx_pf_3alc_5eigen_2jacobi_eigen(CYTHON_UNUSED PyObject *__py
     __pyx_t_2 = 0;
     __Pyx_DECREF_SET(__pyx_v_j, __pyx_t_6);
     __pyx_t_6 = 0;
-
-    /* "alc/eigen.py":39
- *     X = X * P
- *     greater, i, j = get_greater_value_outside_diagonal(A)
- *     print ("A={}".format(A))             # <<<<<<<<<<<<<<
- *     print ("Greater for matrix A is {}".format(greater))
- *   return A, X
- */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_A, __pyx_n_s_format); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_2 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
-      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_6);
-      if (likely(__pyx_t_2)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-        __Pyx_INCREF(__pyx_t_2);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_6, function);
-      }
-    }
-    __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_2, __pyx_v_A) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_A);
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-
-    /* "alc/eigen.py":40
- *     greater, i, j = get_greater_value_outside_diagonal(A)
- *     print ("A={}".format(A))
- *     print ("Greater for matrix A is {}".format(greater))             # <<<<<<<<<<<<<<
- *   return A, X
- */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Greater_for_matrix_A_is, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
-      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
-      if (likely(__pyx_t_2)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-        __Pyx_INCREF(__pyx_t_2);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_1, function);
-      }
-    }
-    __pyx_t_6 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_v_greater) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_greater);
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 40, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "alc/eigen.py":41
- *     print ("A={}".format(A))
- *     print ("Greater for matrix A is {}".format(greater))
+  /* "alc/eigen.py":37
+ *     X = X * P
+ *     greater, i, j = get_greater_value_outside_diagonal(A)
  *   return A, X             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_A);
   __Pyx_GIVEREF(__pyx_v_A);
@@ -2372,9 +2247,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_u_A, __pyx_k_A, sizeof(__pyx_k_A), 0, 1, 0, 0},
-  {&__pyx_n_s_A_2, __pyx_k_A_2, sizeof(__pyx_k_A_2), 0, 0, 1, 1},
-  {&__pyx_kp_u_Greater_for_matrix_A_is, __pyx_k_Greater_for_matrix_A_is, sizeof(__pyx_k_Greater_for_matrix_A_is), 0, 1, 0, 0},
+  {&__pyx_n_s_A, __pyx_k_A, sizeof(__pyx_k_A), 0, 0, 1, 1},
   {&__pyx_kp_u_Input_matrices_for_Jacobi_method, __pyx_k_Input_matrices_for_Jacobi_method, sizeof(__pyx_k_Input_matrices_for_Jacobi_method), 0, 1, 0, 0},
   {&__pyx_n_s_P, __pyx_k_P, sizeof(__pyx_k_P), 0, 0, 1, 1},
   {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
@@ -2389,7 +2262,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_constants, __pyx_k_constants, sizeof(__pyx_k_constants), 0, 0, 1, 1},
   {&__pyx_n_s_epsilon, __pyx_k_epsilon, sizeof(__pyx_k_epsilon), 0, 0, 1, 1},
   {&__pyx_n_s_eye, __pyx_k_eye, sizeof(__pyx_k_eye), 0, 0, 1, 1},
-  {&__pyx_n_s_format, __pyx_k_format, sizeof(__pyx_k_format), 0, 0, 1, 1},
   {&__pyx_n_s_generate_p_matrix, __pyx_k_generate_p_matrix, sizeof(__pyx_k_generate_p_matrix), 0, 0, 1, 1},
   {&__pyx_n_s_get_greater_value_outside_diagon, __pyx_k_get_greater_value_outside_diagon, sizeof(__pyx_k_get_greater_value_outside_diagon), 0, 0, 1, 1},
   {&__pyx_n_s_greater, __pyx_k_greater, sizeof(__pyx_k_greater), 0, 0, 1, 1},
@@ -2405,7 +2277,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_new_lambda_i, __pyx_k_new_lambda_i, sizeof(__pyx_k_new_lambda_i), 0, 0, 1, 1},
   {&__pyx_n_s_power_method, __pyx_k_power_method, sizeof(__pyx_k_power_method), 0, 0, 1, 1},
   {&__pyx_n_u_power_method, __pyx_k_power_method, sizeof(__pyx_k_power_method), 0, 1, 0, 1},
-  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_r, __pyx_k_r, sizeof(__pyx_k_r), 0, 0, 1, 1},
   {&__pyx_n_s_random_array, __pyx_k_random_array, sizeof(__pyx_k_random_array), 0, 0, 1, 1},
   {&__pyx_n_s_shape, __pyx_k_shape, sizeof(__pyx_k_shape), 0, 0, 1, 1},
@@ -2418,7 +2289,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 28, __pyx_L1_error)
-  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 32, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2458,7 +2328,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *   if not is_symmetric(arr):
  *     raise ValueError ("Input matrices for Jacobi method must be symmetric.")
  */
-  __pyx_tuple__4 = PyTuple_Pack(8, __pyx_n_s_arr, __pyx_n_s_threshold, __pyx_n_s_A_2, __pyx_n_s_X, __pyx_n_s_greater, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_P); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(8, __pyx_n_s_arr, __pyx_n_s_threshold, __pyx_n_s_A, __pyx_n_s_X, __pyx_n_s_greater, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_P); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
   __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_alc_eigen_py, __pyx_n_s_jacobi_eigen, 26, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 26, __pyx_L1_error)

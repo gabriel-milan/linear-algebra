@@ -3,9 +3,10 @@ __all__ = [
 ]
 
 from copy import deepcopy
+from alc.constants import constants
 from alc.utils import random_array, zeros, vector_norm, is_diagonally_dominant, is_definite_positive
 
-def gauss_seidel (A, B, threshold=1e-3):
+def gauss_seidel (A, B, threshold=constants.epsilon):
   if (not is_diagonally_dominant(A)):
     if (not is_definite_positive(A)):
       raise ValueError("A matriz \"A\" não é estritamente diagonal dominante nem positiva definida e, portanto, o método de Gauss-Seidel não irá convergir!")

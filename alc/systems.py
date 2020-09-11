@@ -2,6 +2,7 @@ __all__ = [
   "solve"
 ]
 
+from alc.constants import constants
 from alc.gauss import gauss_elimination, gauss_jordan_elimination
 from alc.utils import zeros
 from alc.jacobi import jacobi
@@ -36,7 +37,7 @@ def forwardsub (L, B):
     y[i][0] /= L[i][i]
   return y
 
-def solve (A, B, method='gauss', threshold=1e-3):
+def solve (A, B, method='gauss', threshold=constants.epsilon):
   if method == "gauss":
     # Turn A into an upper triangular matrix
     A, intermediates = gauss_elimination (A, return_intermediates=True, show_steps=False, return_pivots=False)
