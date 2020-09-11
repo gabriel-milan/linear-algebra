@@ -29,13 +29,9 @@ def jacobi_eigen (arr, threshold=constants.epsilon):
   A = arr
   X = eye(arr.shape[0])
   greater, i, j = get_greater_value_outside_diagonal(A)
-  print ("A={}".format(A))
-  print ("Greater for matrix A is {}".format(greater))
   while (greater > threshold):
     P = generate_p_matrix(A, i, j)
     A = P.t * A * P
     X = X * P
     greater, i, j = get_greater_value_outside_diagonal(A)
-    print ("A={}".format(A))
-    print ("Greater for matrix A is {}".format(greater))
   return A, X
