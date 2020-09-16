@@ -215,11 +215,12 @@ class Array (object):
 
   # Get transpose
   def transpose (self):
-    it = deepcopy(self.__iterable)
-    for i in range(self.shape[0]):
-      for j in range(self.shape[1]):
-        it[i][j] = self.__iterable[j][i]
-    return Array(it)
+    from alc.utils import zeros
+    new_arr = zeros((self.shape[1], self.shape[0]))
+    for i in range(self.shape[1]):
+      for j in range(self.shape[0]):
+        new_arr[i][j] = self.__iterable[j][i]
+    return new_arr
 
   # Get trace
   def trace (self):
