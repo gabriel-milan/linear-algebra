@@ -1117,6 +1117,7 @@ static const char __pyx_k_systems[] = "systems";
 static const char __pyx_k_constants[] = "constants";
 static const char __pyx_k_gauss_seidel[] = "gauss_seidel";
 static const char __pyx_k_decomposition[] = "decomposition";
+static const char __pyx_k_least_squares[] = "least_squares";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static PyObject *__pyx_n_s_;
 static PyObject *__pyx_n_s_Array;
@@ -1132,6 +1133,7 @@ static PyObject *__pyx_n_s_gauss;
 static PyObject *__pyx_n_s_gauss_seidel;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_jacobi;
+static PyObject *__pyx_n_s_least_squares;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_systems;
@@ -1326,6 +1328,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_gauss_seidel, __pyx_k_gauss_seidel, sizeof(__pyx_k_gauss_seidel), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_jacobi, __pyx_k_jacobi, sizeof(__pyx_k_jacobi), 0, 0, 1, 1},
+  {&__pyx_n_s_least_squares, __pyx_k_least_squares, sizeof(__pyx_k_least_squares), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_systems, __pyx_k_systems, sizeof(__pyx_k_systems), 0, 0, 1, 1},
@@ -2149,6 +2152,7 @@ if (!__Pyx_RefNanny) {
  * from . import eigen
  * __all__.extend(eigen.__all__)             # <<<<<<<<<<<<<<
  * from .eigen import *
+ * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_all); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -2170,6 +2174,8 @@ if (!__Pyx_RefNanny) {
  * from . import eigen
  * __all__.extend(eigen.__all__)
  * from .eigen import *             # <<<<<<<<<<<<<<
+ * 
+ * from . import least_squares
  */
   __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -2182,15 +2188,74 @@ if (!__Pyx_RefNanny) {
   if (__pyx_import_star(__pyx_t_3) < 0) __PYX_ERR(0, 37, __pyx_L1_error);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
+  /* "alc/__init__.py":39
+ * from .eigen import *
+ * 
+ * from . import least_squares             # <<<<<<<<<<<<<<
+ * __all__.extend(least_squares.__all__)
+ * from .least_squares import *
+ */
+  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_INCREF(__pyx_n_s_least_squares);
+  __Pyx_GIVEREF(__pyx_n_s_least_squares);
+  PyList_SET_ITEM(__pyx_t_3, 0, __pyx_n_s_least_squares);
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_, __pyx_t_3, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_least_squares); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_least_squares, __pyx_t_3) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "alc/__init__.py":40
+ * 
+ * from . import least_squares
+ * __all__.extend(least_squares.__all__)             # <<<<<<<<<<<<<<
+ * from .least_squares import *
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_all); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_extend); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_least_squares); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_all); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "alc/__init__.py":41
+ * from . import least_squares
+ * __all__.extend(least_squares.__all__)
+ * from .least_squares import *             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_INCREF(__pyx_n_s__2);
+  __Pyx_GIVEREF(__pyx_n_s__2);
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s__2);
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_least_squares, __pyx_t_2, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__pyx_import_star(__pyx_t_1) < 0) __PYX_ERR(0, 41, __pyx_L1_error);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
   /* "alc/__init__.py":1
  * __all__ = []             # <<<<<<<<<<<<<<
  * 
  * from . import constants
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_3) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /*--- Wrapped vars code ---*/
 

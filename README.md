@@ -65,4 +65,4 @@ python3 -m pip install .
 - [x] alc.jacobi: implementa o método de Jacobi
 - [x] alc.power_method: implementa o power method, ou método das potências, para calcular o maior autovalor e o autovetor associado a ele
 - [x] alc.jacobi_eigen: implementa o método de jacobi para cálculo de autovalores e autovetores
-- [ ] Lista 3
+- [x] alc.least_squares: implementa o método de mínimos quadrados para ajustar uma função do tipo ax=b

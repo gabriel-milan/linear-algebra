@@ -35,3 +35,7 @@ from .jacobi import *
 from . import eigen
 __all__.extend(eigen.__all__)
 from .eigen import *
+
+from . import least_squares
+__all__.extend(least_squares.__all__)
+from .least_squares import *
