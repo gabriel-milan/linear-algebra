@@ -1,5 +1,9 @@
 __all__ = []
 
+from . import exceptions
+__all__.extend(exceptions.__all__)
+from .exceptions import *
+
 from . import constants
 __all__.extend(constants.__all__)
 from .constants import *
@@ -39,3 +43,7 @@ from .eigen import *
 from . import least_squares
 __all__.extend(least_squares.__all__)
 from .least_squares import *
+
+from . import roots
+__all__.extend(roots.__all__)
+from .roots import *

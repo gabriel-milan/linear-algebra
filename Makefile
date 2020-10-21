@@ -1,4 +1,5 @@
 clean:
+	find . -type f -name '*.c' -delete
 	find . -type f -name '*.so' -delete
 	find . -type f -name '*.pyc' -delete
 	rm -rf build/

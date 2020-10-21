@@ -1,7 +1,11 @@
 __all__ = [
-  "solve"
+  "solve",
+  "equations"
 ]
 
+from sympy import *
+from alc.Array import Array
+from alc.exceptions import ExpressionError
 from alc.constants import constants
 from alc.gauss import gauss_elimination, gauss_jordan_elimination
 from alc.utils import zeros
@@ -84,3 +88,67 @@ def solve (A, B, method='gauss', threshold=constants.epsilon):
       raise e
   else:
     raise NameError("Solving method not allowed!")
+
+def equations (eq_list, x0, threshold=constants.epsilon, max_iter=constants.max_iter, method='newton'):
+  symbols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+  func_vars = []
+  eqs = []
+  if (len(eq_list) != len(x0)):
+    raise ValueError("Equations length ({}) differs from x0 length ({})".format(len(eq_list), len(x0)))
+  if (len(eq_list) > len(symbols)):
+    raise ValueError("System must have at most {} equations and variables".format(len(symbols)))
+  for w in range(len(eq_list)):
+    exec("{0} = Symbol('{0}')".format(symbols[w]))
+    exec("func_vars.append({})".format(symbols[w]))
+  for w in range(len(eq_list)):
+    try:
+      eqs.append(eval(eq_list[w]))
+    except:
+      raise ExpressionError("Falhou ao executar a seguinte função: {}. Favor verificar a expressão.".format(function))
+  F = Matrix(eqs)
+  Y = Matrix(func_vars)
+  J = F.jacobian(Y)
+  xk1 = Matrix(x0)
+  if (method == 'newton'):
+    for k in range(max_iter):
+      j = J
+      f = F
+      for i, var in enumerate(func_vars):
+        j = j.limit(var, xk1[i])
+        f = f.limit(var, xk1[i])
+      delta_x = - j.inv() * f
+      xk = xk1 + delta_x
+      xk1 = xk
+      tol = delta_x.norm().n() / xk.norm().n()
+      if tol <= threshold:
+        ret_arr = []
+        for w in range(len(eq_list)):
+          ret_arr.append(float(xk.n()[w]))
+        return Array(ret_arr)
+    raise ValueError("Método de Newton não convergiu (threshold={:e}, max_iter={}).".format(threshold, max_iter))
+  elif (method == 'broyden'):
+    bk1 = J
+    f = F
+    for i, var in enumerate(func_vars):
+      bk1 = bk1.limit(var, xk1[i])
+      f = f.limit(var, xk1[i])
+    for k in range(max_iter):
+      j = bk1
+      delta_x = - j.inv() * f
+      xk = xk1 + delta_x
+      fxk = F
+      for i, var in enumerate(func_vars):
+        fxk = fxk.limit(var, xk[i])
+      yk = fxk - f
+      tol = delta_x.norm().n() / xk.norm().n()
+      if tol <= threshold:
+        ret_arr = []
+        for w in range(len(eq_list)):
+          ret_arr.append(float(xk.n()[w]))
+        return Array(ret_arr)
+      bk = bk1 + (yk-bk1*delta_x)*delta_x.transpose()/(delta_x.transpose()*delta_x).n()[0]
+      xk1 = xk
+      bk1 = bk
+      f = fxk
+  else:
+    raise NameError("Solving method {} not allowed!".format(method))

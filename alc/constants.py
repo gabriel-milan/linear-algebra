@@ -19,3 +19,4 @@ def const(cls):
 class constants (object):
   epsilon = 1e-7
   decimal_places = 7 # Whatever power you set to epsilon, set it here too
+  max_iter = 500

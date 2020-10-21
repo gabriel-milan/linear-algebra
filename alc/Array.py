@@ -39,9 +39,13 @@ class Array (object):
   # Rounding elements according to epsilon
   def __epsilonRound (self):
     it = deepcopy(self.__iterable)
-    for i in range(self.shape[0]):
+    if (self.shape[0] > 1):
+      for i in range(self.shape[0]):
+        for j in range(self.shape[1]):
+          it[i][j] = round(it[i][j], constants.decimal_places)
+    else:
       for j in range(self.shape[1]):
-        it[i][j] = round(it[i][j], constants.decimal_places)
+        it[j] = round(it[j], constants.decimal_places)
     return it
 
   # Pretty printer

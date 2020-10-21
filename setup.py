@@ -29,7 +29,8 @@ setup(
   author_email = 'gabriel.gazola@poli.ufrj.br',
   url = 'https://github.com/gabriel-milan/linear-algebra',
   install_requires=[
-   'Cython>=0.29.17',
+    'Cython>=0.29.17',
+    'sympy==1.6.2',
   ],
   classifiers=[
     'Development Status :: 4 - Beta',
@@ -43,5 +44,5 @@ setup(
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
   ],
-  ext_modules = cythonize(extensions, language_level = "3")
+  # ext_modules = cythonize(extensions, language_level = "3")
 )
