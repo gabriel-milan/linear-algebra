@@ -111,6 +111,7 @@ def equations (eq_list, x0, threshold=constants.epsilon, max_iter=constants.max_
   xk1 = Matrix(x0)
   if (method == 'newton'):
     for k in range(max_iter):
+      print ("Iter #{}".format(k+1))
       j = J
       f = F
       for i, var in enumerate(func_vars):
@@ -133,6 +134,7 @@ def equations (eq_list, x0, threshold=constants.epsilon, max_iter=constants.max_
       bk1 = bk1.limit(var, xk1[i])
       f = f.limit(var, xk1[i])
     for k in range(max_iter):
+      print ("Iter #{}".format(k+1))
       j = bk1
       delta_x = - j.inv() * f
       xk = xk1 + delta_x

@@ -15,7 +15,7 @@ def bisection (function, a, b, threshold=constants.epsilon):
     f = lambdify(x, eval(function))
   except:
     raise ExpressionError("Falhou ao executar a seguinte função: {}. Favor verificar a expressão.".format(function))
-  while ((b - a) >= threshold):
+  while (abs(b - a) >= threshold):
     xi = (a + b) / 2
     fi = f(xi)
     if (fi > 0):
