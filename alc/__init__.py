@@ -47,3 +47,15 @@ from .least_squares import *
 from . import roots
 __all__.extend(roots.__all__)
 from .roots import *
+
+from . import derivative
+__all__.extend(derivative.__all__)
+from .derivative import *
+
+from . import integrate
+__all__.extend(integrate.__all__)
+from .integrate import *
+
+from . import ode
+__all__.extend(ode.__all__)
+from .ode import *

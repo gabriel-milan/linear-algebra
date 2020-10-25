@@ -89,17 +89,14 @@ def solve (A, B, method='gauss', threshold=constants.epsilon):
   else:
     raise NameError("Solving method not allowed!")
 
-def equations (eq_list, x0, threshold=constants.epsilon, max_iter=constants.max_iter, method='newton'):
-  symbols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+def equations (eq_list, symbols, x0, threshold=constants.epsilon, max_iter=constants.max_iter, method='newton'):
   func_vars = []
   eqs = []
-  if (len(eq_list) != len(x0)):
-    raise ValueError("Equations length ({}) differs from x0 length ({})".format(len(eq_list), len(x0)))
-  if (len(eq_list) > len(symbols)):
-    raise ValueError("System must have at most {} equations and variables".format(len(symbols)))
-  for w in range(len(eq_list)):
-    exec("{0} = Symbol('{0}')".format(symbols[w]))
-    exec("func_vars.append({})".format(symbols[w]))
+  if (len(symbols) != len(x0)):
+    raise ValueError("Symbols length ({}) differs from x0 length ({})".format(len(symbols), len(x0)))
+  for symbol in symbols:
+    exec("{0} = Symbol('{0}')".format(symbol))
+    exec("func_vars.append({})".format(symbol))
   for w in range(len(eq_list)):
     try:
       eqs.append(eval(eq_list[w]))
@@ -111,16 +108,17 @@ def equations (eq_list, x0, threshold=constants.epsilon, max_iter=constants.max_
   xk1 = Matrix(x0)
   if (method == 'newton'):
     for k in range(max_iter):
-      print ("Iter #{}".format(k+1))
       j = J
       f = F
       for i, var in enumerate(func_vars):
         j = j.limit(var, xk1[i])
         f = f.limit(var, xk1[i])
+      j = j.n()
+      f = f.n()
       delta_x = - j.inv() * f
       xk = xk1 + delta_x
       xk1 = xk
-      tol = delta_x.norm().n() / xk.norm().n()
+      tol = delta_x.norm() / xk.norm()
       if tol <= threshold:
         ret_arr = []
         for w in range(len(eq_list)):
@@ -133,14 +131,16 @@ def equations (eq_list, x0, threshold=constants.epsilon, max_iter=constants.max_
     for i, var in enumerate(func_vars):
       bk1 = bk1.limit(var, xk1[i])
       f = f.limit(var, xk1[i])
+    bk1 = bk1.n()
+    f = f.n()
     for k in range(max_iter):
-      print ("Iter #{}".format(k+1))
       j = bk1
       delta_x = - j.inv() * f
       xk = xk1 + delta_x
       fxk = F
       for i, var in enumerate(func_vars):
         fxk = fxk.limit(var, xk[i])
+      fxk = fxk.n()
       yk = fxk - f
       tol = delta_x.norm().n() / xk.norm().n()
       if tol <= threshold:
@@ -149,7 +149,7 @@ def equations (eq_list, x0, threshold=constants.epsilon, max_iter=constants.max_
           ret_arr.append(float(xk.n()[w]))
         return Array(ret_arr)
       bk = bk1 + (yk-bk1*delta_x)*delta_x.transpose()/(delta_x.transpose()*delta_x).n()[0]
-      xk1 = xk
+      xk1 = xk.n()
       bk1 = bk
       f = fxk
   else:

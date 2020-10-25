@@ -4,6 +4,7 @@ __all__ = [
 ]
 
 from sympy import *
+from alc.systems import solve
 from alc.constants import constants
 from alc.utils import zeros, ones
 
@@ -59,7 +60,9 @@ def nl_least_squares (fit_function, symbols, xs, ys, start_values, threshold=con
     for i, var in enumerate(func_vars):
       j = j.limit(var, xk1[i])
       f = f.limit(var, xk1[i])
-    delta_x = (j.transpose().n() * j.n()).inv() * (- j.transpose().n() * f.n())
+    j = j.n()
+    f = f.n()
+    delta_x = (j.transpose() * j).inv() * (- j.transpose() * f)
     xk = xk1 + delta_x
     xk1 = xk
     tol = delta_x.norm().n() / xk.norm().n()
