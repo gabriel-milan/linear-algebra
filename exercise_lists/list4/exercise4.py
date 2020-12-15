@@ -11,5 +11,5 @@ for (delta1, delta2) in [(0, 3), (0.75, 6.5), (0, 11.667)]:
   print ("- Equação #2: {} = 0".format(f2))
   print ("- Equação #3: {} = 0".format(f3))
 
-  print ("-> Método de Newton: {}".format(alc.equations([f1, f2, f3], ['b', 'c', 'd'], [1, 1, 1])))
-  print ("-> Método de Broyden: {}".format(alc.equations([f1, f2, f3], ['b', 'c', 'd'], [1, 1, 1], method='broyden')))
+  print ("-> Método de Newton: {}".format(alc.equations([f1, f2, f3], ['b', 'c', 'd'], [1, 0, 0])))
+  print ("-> Método de Broyden: {}".format(alc.equations([f1, f2, f3], ['b', 'c', 'd'], [1, 0, 0], method='broyden')))
